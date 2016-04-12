@@ -1,5 +1,5 @@
 // DEPENDENCIES
-// main.js: ctx
+// main.js: ctx, canvas 
 
 // RADIUS 
 var radius = 2, // default 
@@ -53,26 +53,43 @@ function setTool(tool){
     removeEventListeners();
     textToolbar.style.display = 'none'; 
     ctx.setLineDash([]); 
+    canvas.style.cursor = 'crosshair'; 
 }
 
 function removeEventListeners(){
-    // drawing
+    // draw 
     canvas.removeEventListener('mousedown', beginDraw);
     canvas.removeEventListener('mouseup', endDraw);
     canvas.removeEventListener('mousemove', draw);
 
-    // line 
-    canvas.removeEventListener('mousedown', beginLine);
+    // all shapes 
+    canvas.removeEventListener('mousedown', beginShape);
+    canvas.removeEventListener('mouseup', endShape);
+
+    // line and dash 
     canvas.removeEventListener('mousemove', drawLine);
-    canvas.removeEventListener('mouseup', endLine);
 
-    // erasor 
-    canvas.removeEventListener('mousedown', beginErase);
-    canvas.removeEventListener('mousemove', erase);
-    canvas.removeEventListener('mouseup', endErase);
+    // rectangle  
+    canvas.removeEventListener('mousemove', drawRect);
 
+    // circle   
+    canvas.removeEventListener('mousemove', drawCirc);
+
+    // graph
+    canvas.removeEventListener('mousemove', drawGraph);
+    
     // text 
     canvas.removeEventListener('mousedown', previewText);
     canvas.removeEventListener('mousemove', moveText);
     canvas.removeEventListener('mouseup', pasteText);
+    
+    // erasor 
+    canvas.removeEventListener('mousedown', beginErase);
+    canvas.removeEventListener('mousemove', erase);
+    canvas.removeEventListener('mouseup', endErase); 
+
+    // select
+    canvas.removeEventListener('mousedown', beginSelect);
+    canvas.removeEventListener('mousemove', moveSelect);
+    canvas.removeEventListener('mouseup', endSelect);   
 }

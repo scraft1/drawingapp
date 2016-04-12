@@ -29,7 +29,7 @@ function activateText(e){
     setTool(e.target);
 
     textToolbar.style.display = 'inline'; 
-
+    canvas.style.cursor = 'default'; 
     canvas.addEventListener('mousedown', previewText);
     canvas.addEventListener('mousemove', moveText);
     canvas.addEventListener('mouseup', pasteText);
@@ -44,11 +44,11 @@ var textTool = document.getElementById('text');
 textTool.addEventListener('click', activateText);
 
 var fontSize = document.getElementById('font-size');
-for(var i = 12; i<42; i+=2){
+for(var i = 16; i<52; i+=2){
     var option = document.createElement('option');
     option.value = i
     option.innerHTML = i;
-    if(i == 16){
+    if(i == 40){
         changeFontSize(i);
         option.selected = 'selected'; 
     }

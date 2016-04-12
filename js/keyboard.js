@@ -1,23 +1,76 @@
-var undoStroke = function(){
-  if(imageVersion == 0)return;
-  imageVersion--;
-  ctx.putImageData(canvasImages[imageVersion], 0, 0);
+// DEPENDENCIES
+// main.js: ctx, canvas  
+
+function keyBoardHandler(e){
+  if(e.metaKey && e.shiftKey && e.keyCode == 90){ // z 
+    redoStroke();
+  }
+  else if(e.metaKey && e.keyCode == 90){
+    undoStroke();
+    selectStart = selectRect = {};
+  }
+  else if(e.metaKey && e.keyCode == 67){ // c
+    if(Object.keys(selectRect).length){
+      selectCopy = true; 
+    }
+  }
+  else if(e.keyCode == 8){ // backspace 
+    e.preventDefault(); 
+    if(Object.keys(selectRect).length){
+      ctx.putImageData(tmpImage,0,0);
+      ctx.clearRect(selectRect.x,selectRect.y,selectRect.w,selectRect.h); 
+      selectStart = selectRect = {};
+    }
+  }
 }
 
-var redoStroke = function(){
+// UNDO and REDO 
+function undoStroke(){
+  if(imageVersion == 0)return;
+  imageVersion--;
+  ctx.putImageData(canvasImages[imageVersion], 0, 0); 
+}
+
+function redoStroke(){
   if(imageVersion == canvasImages.length-1)return;
   imageVersion++;
   ctx.putImageData(canvasImages[imageVersion], 0, 0);
 }
 
-var keyBoard = function(e){
-  if(e.keyCode == 90 && e.shiftKey && e.metaKey){
-    redoStroke();
-  }
-  else if(e.keyCode == 90 && e.metaKey){
-    undoStroke();
+
+// PASTE IMAGE 
+var scale = 1; 
+
+function pasteClipboard(e){
+  var items = e.clipboardData.items;
+  if(items[0].type.indexOf('image') == -1)return;
+  
+  var imgFile = items[0].getAsFile();
+  var URLObj = window.URL || window.webkitURL;
+  var urlSrc = URLObj.createObjectURL(imgFile);
+  
+  var img = new Image();
+  img.src = urlSrc;
+  img.onload = function(){
+    var width = img.width * scale,
+        height = img.height * scale;
+
+    if(width<10){width=10;}
+    else if(height<10){height=10;}
+    else if(width>canvas.width){width=canvas.width;}
+    else if(height>canvas.height){height=canvas.height;}
+
+    ctx.drawImage(img,100,100,width,height);
+    setImage(); 
   }
 }
 
+function setScale(value){
+  scale = value; 
+}
 
-window.addEventListener('keydown', keyBoard);
+document.getElementById('imgscale').value = 1;
+
+
+window.addEventListener('keydown', keyBoardHandler);
+window.addEventListener('paste', pasteClipboard);

@@ -70,6 +70,7 @@ function endDraw(e) {
 function activateDrawing(e){
     setTool(e.target);
     
+    canvas.style.cursor = 'pointer'; 
     canvas.addEventListener('mousedown', beginDraw);
     canvas.addEventListener('mouseup', endDraw);
     canvas.addEventListener('mousemove', draw);

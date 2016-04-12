@@ -11,55 +11,79 @@
 
 }
 
+#toolbar, #colors, #text-toolbar * {
+    background-color: #2f2f2f;
+}
+
+#radval, .radcontrol, .tool, #imgscale {
+    background-color: #4f4f4f;
+    height:30px;
+    display: inline-block;
+    text-align: center;
+}
+
 #toolbar {
     width: 100%;
     height: 50px;
     padding: 10px;
     position: fixed;
     top: 0;
-    background-color: #2f2f2f;
     color: white;
     cursor:pointer;
 }
 
 .radcontrol, #radval {
     width: 30px;
-    height: 30px;
-    background-color: #4f4f4f;
-    display: inline-block;
-    text-align: center;
     padding: 5px;
-    
 }
 
-#radval {
+#radval, #imgscale {
     color:white;
     font-size:14px;
-    background-color: #4f4f4f;
     width: 40px;
     border:none;
 }
 
 #rad {
-    float:left;
+    display: inline-block;
+    margin-right: 10px; 
 }
 
 .tool {
-    float:left;
-    height:30px;
-    background-color: #4f4f4f;
-    display: inline-block;
-    text-align: center;
     padding: 5px 10px 5px 10px;
-    margin-left:20px;
+    margin-left:5px;
 }
 
 .tool.active {
     border: 1px solid white;
 }
 
-#colors {
+#text-toolbar {
+    position: fixed;
+    top: 60px;
+    right: 10px;
+}
+
+#text-toolbar * {
+    color:white;
     float:right;
+    font-size: 16px;
+    margin-left: 10px;
+}
+
+#select, #erase, #scale {
+    float:right;
+}
+
+#scale {
+    margin-left: 10px; 
+}
+
+#colors {
+    float:left;
+    position:fixed;
+    top:50px;
+    padding:7px 7px 0px 7px;
 }
 
 .swatch {
@@ -68,8 +92,8 @@
     border-radius:15px;
     box-shadow: inset 0px 1px 0px rgba(255,255,255,0.5), 
     0px 2px 2px rgba(0,0,0,0.5);
-    display:inline-block;
-    margin-left: 10px;
+    /*display:inline-block;*/
+    margin-bottom: 7px;
 }
 
 .swatch.active {
@@ -79,20 +103,6 @@
 
 #canvas1 {
     background-color: black;
-    cursor:pointer;
+    cursor:crosshair;
     overflow:auto;
-}
-
-#text-toolbar {
-    position: fixed;
-    top: 60px;
-    left: 10px;
-}
-
-#text-toolbar * {
-    background-color: #2f2f2f;
-    color:white;
-    margin-left: 10px;
-    float:left;
-    font-size: 16px;
 }

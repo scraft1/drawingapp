@@ -8,7 +8,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 
-<body style="margin: 0">
+<body style="margin:0">
 
   <div id="toolbar">
     <div id="rad">
@@ -20,17 +20,27 @@
     <div id="draw" class="tool">Draw</div>
     <div id="line" class="tool">Line</div>
     <div id="dash" class="tool">Dash</div>
+    <div id="rectangle" class="tool">Rect</div>
+    <div id="circle" class="tool">Circ</div>
+    <div id="graph" class="tool">Graph</div>
     <div id="text" class="tool">Text</div>
-    <div id="erasor" class="tool">Erasor</div>
-    <div id="colors"></div>
+
+    <div id="scale">
+      Paste:&nbsp;
+      <input type="text" id="imgscale" onchange="setScale(this.value)">
+    </div> 
+    <div id="erase" class="tool">Erase</div>
+    <div id="select" class="tool">Select</div>
   </div>
 
-  <canvas id='canvas1'>Sorry, your browser doesn't support the HTML5 canvas element.</canvas> 
-
+  <div id="colors"></div>
+  
   <div id="text-toolbar">
     <textarea id="text-value"></textarea>
     <select id="font-size" onchange="changeFontSize(this.value)"><select>
   </div>
+
+  <canvas id="canvas1">Sorry, your browser doesn't support the HTML5 canvas element.</canvas> 
 
   <script src='js/main.js'></script>
   <script src='js/toolbar.js'></script>
