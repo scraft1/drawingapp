@@ -14,9 +14,9 @@ function keyBoardHandler(e){
       selectCopy = true; 
     }
   }
-  else if(e.keyCode == 8){ // backspace 
-    e.preventDefault(); 
+  else if(e.keyCode == 8){ // backspace  
     if(Object.keys(selectRect).length){
+      e.preventDefault(); // needs to work for textarea 
       ctx.putImageData(tmpImage,0,0);
       ctx.clearRect(selectRect.x,selectRect.y,selectRect.w,selectRect.h); 
       selectStart = selectRect = {};

@@ -116,7 +116,7 @@ function activateSelect(e){
 
     scratchCanvas.width = width; // clears canvas 
     scratchImg = scratchCtx.getImageData(0,0,scratchCanvas.width,scratchCanvas.height);
-    scratchCtx.strokeStyle = 'white'; 
+    scratchCtx.strokeStyle = 'lightblue'; 
     scratchCtx.setLineDash([10,10]);
 
     canvas.addEventListener('mousedown', beginSelect);

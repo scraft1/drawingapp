@@ -29,8 +29,7 @@ function shapeTool(e){
 // LINE and DASH 
 function drawLine(e){
     if(!drawing)return;
-    ctx.putImageData(tmpImage, 0, 0);
-        console.log("in"); 
+    ctx.putImageData(tmpImage,0,0);
 
     ctx.beginPath(); 
     ctx.moveTo(startPoint.x, startPoint.y);
@@ -56,7 +55,7 @@ document.getElementById('dash').addEventListener('click', activateDash);
 // RECTANGLE 
 function drawRect(e){
     if(!drawing)return;
-    ctx.putImageData(tmpImage, 0, 0);
+    ctx.putImageData(tmpImage,0,0);
     
     var width = e.offsetX - startPoint.x;
     var height = e.offsetY - startPoint.y;
@@ -75,7 +74,7 @@ rectangle.addEventListener('click', activateRect);
 // CIRCLE  
 function drawCirc(e){
     if(!drawing)return;
-    ctx.putImageData(tmpImage, 0, 0);
+    ctx.putImageData(tmpImage,0,0);
     
     var thisPoint = {x:e.offsetX,y:e.offsetY};
     var circRad = distanceBetween(startPoint,thisPoint); 
@@ -98,7 +97,7 @@ var minX = canvas.width;
 
 function drawGraph(e){
     if(!drawing)return;
-    ctx.putImageData(tmpImage, 0, 0);
+    ctx.putImageData(tmpImage,0,0);
     
     var x = e.offsetX, y = e.offsetY;
     if (x < minX){

@@ -1,5 +1,5 @@
 // DEPENDENCIES
-// main.js: ctx, canvas 
+// main.js: ctx, canvas, gradrad 
 
 // RADIUS 
 var radius = 2, // default 
@@ -27,15 +27,24 @@ function setRadius(newRadius){
 }
 
 decRad.addEventListener('click', function(){
-    radius = Math.round(radius);
-    setRadius(radius-interval);
+    if(radius <= 4){
+        radius = Math.round(radius*2)/2; // round to nearest .5 
+        setRadius(radius-0.5);
+    } else {
+        radius = Math.round(radius);
+        setRadius(radius-interval);
+    }
 })
 
 incRad.addEventListener('click', function(){
-    if(radius == 0.5)
-        radius = 0.0;
-    radius = Math.round(radius);
-    setRadius(radius+interval);
+    if(radius < 4){
+        radius = Math.round(radius*2)/2; // round to nearest .5 
+        setRadius(radius+0.5);
+    }
+    else {
+        radius = Math.round(radius);
+        setRadius(radius+interval);
+    }
 })
 
 setRadius(radius);

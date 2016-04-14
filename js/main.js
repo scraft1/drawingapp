@@ -45,22 +45,15 @@ function rectCoord(x1,y1,x2,y2){
 
 
 // TO DO: 
-// copy/cut/drag/zoom 
-// smooth last stroke? 
+// select zoom?  
 // grid background 
 // show angle and magnitude of lines, change units 
 // show size of erasor (thin rectangle), color dot
 // curve (use highest point as control) 
-// 2 rows, rect erasor 
 // cosine, sine waves 
-
 // multiline text, fill, lasso?
 // save images and reupload images 
 // arrange colors 
-
-// virtual canvas to avoid resizing 
-// clear canvas by setting width or height 
-
 
 // Tool bar 
 // Width, scale 

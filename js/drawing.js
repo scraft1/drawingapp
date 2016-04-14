@@ -4,7 +4,13 @@
 // colors.js: activeColor 
 
 var isDrawing = false, 
-    lastPoint = {};
+    control1 = {},
+    control2 = {},
+    lastPoint = {},
+    strokeEnd = {},
+    readyToDraw = false,
+    gradrad; 
+
 ctx.lineCap = ctx.lineJoin = "round";
 // ctx.imageSmoothingEnabled = true;
 
@@ -19,51 +25,50 @@ function distanceBetween(point1, point2) {
   return Math.sqrt(Math.pow(point2.x - point1.x, 2) + Math.pow(point2.y - point1.y, 2));
 }
 
+function angleBetween(point1, point2) {
+  return Math.atan2( point2.y - point1.y, point2.x - point1.x );
+}
+
 function beginDraw(e) {
   isDrawing = true;
-  lastPoint = {x:e.offsetX, y:e.offsetY};
+  lastPoint = control1 = {x:e.offsetX, y:e.offsetY};
   drawDot(e);
+  ctx.beginPath();
+  ctx.moveTo(e.offsetX,e.offsetY); 
 }
 
 function drawDot(e){
-  var x = e.offsetX, y = e.offsetY;
   ctx.beginPath();
-  ctx.moveTo(x,y);
   ctx.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2); 
   ctx.fillStyle = activeColor;
   ctx.fill();
-  ctx.beginPath();
-  ctx.moveTo(e.offsetX, e.offsetY);
 }
 
 function draw(e) {
   if(!isDrawing)return;
 
   var thisPoint = {x:e.offsetX, y:e.offsetY};
-  var dist = distanceBetween(lastPoint, thisPoint);
-  if(dist < 4)return; // replace with stroke polishing method?? 
+  var dist = distanceBetween(lastPoint, thisPoint); 
+  if(dist < radius)return; 
 
-  var midPoint = midPointBtw(lastPoint,thisPoint); 
-  ctx.quadraticCurveTo(lastPoint.x, lastPoint.y, midPoint.x, midPoint.y);
-  ctx.stroke(); 
-  lastPoint = thisPoint;
-  
-  var x = midPoint.x, y = midPoint.y;
-  ctx.beginPath();
-  var radgrad = ctx.createRadialGradient(x,y,0.1,x,y,radius);  
-  // radgrad.addColorStop(0, color?);
-  // radgrad.addColorStop(1, 'rgba(255,255,255,0)');
-  ctx.fillStyle = radgrad;
-  ctx.fillRect(x-radius, y-radius, 2*radius, 2*radius);
-  
-  ctx.beginPath();
-  ctx.moveTo(x,y); 
+  if(readyToDraw){
+    var midPoint = midPointBtw(control2,thisPoint); 
+    var x = midPoint.x, y = midPoint.y;
+    ctx.bezierCurveTo(control1.x,control1.y,control2.x,control2.y,x,y);
+    ctx.stroke(); 
+    lastPoint = control1 = thisPoint; 
+    readyToDraw = false; 
+  } else {
+    lastPoint = control2 = thisPoint; 
+    readyToDraw = true;
+  }
 }
 
 function endDraw(e) {
-  isDrawing = false;
+  ctx.lineTo(e.offsetX,e.offsetY);
+  ctx.stroke(); 
   ctx.beginPath(); 
-
+  isDrawing = readyToDraw = false;
   setImage();
 }
 
