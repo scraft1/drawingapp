@@ -2,7 +2,7 @@
 // main.js: ctx, canvas, gradrad 
 
 // RADIUS 
-var radius = 2, // default 
+var radius = 1.5, // default 
     minRad = 0.5,
     maxRad = 20,
     interval = 1,
@@ -61,7 +61,7 @@ function setTool(tool){
 
     removeEventListeners();
     textToolbar.style.display = 'none'; 
-    ctx.setLineDash([]); 
+    //ctx.setLineDash([]); 
     canvas.style.cursor = 'crosshair'; 
 }
 
@@ -102,3 +102,22 @@ function removeEventListeners(){
     canvas.removeEventListener('mousemove', moveSelect);
     canvas.removeEventListener('mouseup', endSelect);   
 }
+
+// TOOL STYLES
+function setToolStyle(e){
+    var active = document.getElementsByClassName('tool-style active')[0];
+    if(active){
+        active.className = 'tool-style';
+    }
+    var toolStyle = e.target;
+    toolStyle.className += ' active';
+
+    if(toolStyle.id == 'dash'){
+        ctx.setLineDash([2*radius, 6*radius]);
+    } else {
+        ctx.setLineDash([]);
+    }
+}
+
+document.getElementById('solid').addEventListener('click', setToolStyle);
+document.getElementById('dash').addEventListener('click', setToolStyle);

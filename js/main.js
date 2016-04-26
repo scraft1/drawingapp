@@ -43,6 +43,8 @@ function rectCoord(x1,y1,x2,y2){
     return {x:x, y:y, w:w, h:h}
 }
 
+// FIXES:
+// changing tool with select rect 
 
 // TO DO: 
 // select zoom?  
@@ -54,6 +56,7 @@ function rectCoord(x1,y1,x2,y2){
 // multiline text, fill, lasso?
 // save images and reupload images 
 // arrange colors 
+// hide layers 
 
 // Tool bar 
 // Width, scale 

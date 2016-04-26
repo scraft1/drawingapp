@@ -42,14 +42,7 @@ function activateLine(e){
     canvas.addEventListener('mousemove', drawLine);
 }
 
-function activateDash(e){
-    shapeTool(e); 
-    ctx.setLineDash([2*radius, 6*radius]);
-    canvas.addEventListener('mousemove', drawLine);
-}
-
 document.getElementById('line').addEventListener('click', activateLine);
-document.getElementById('dash').addEventListener('click', activateDash);
 
 
 // RECTANGLE 
