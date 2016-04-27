@@ -56,12 +56,13 @@ function setTool(tool){
     var active = document.getElementsByClassName('tool active')[0];
     if(active){
         active.className = 'tool';
+        active.style.borderStyle = ''; 
     }
     tool.className += ' active';
+    tool.style.borderStyle = borderStyle; 
 
     removeEventListeners();
     textToolbar.style.display = 'none'; 
-    //ctx.setLineDash([]); 
     canvas.style.cursor = 'crosshair'; 
 }
 
@@ -105,19 +106,26 @@ function removeEventListeners(){
 }
 
 // TOOL STYLES
+var borderStyle = 'solid'; 
+
 function setToolStyle(e){
     var active = document.getElementsByClassName('tool-style active')[0];
     if(active){
         active.className = 'tool-style';
+        active.style.borderStyle = ''; 
     }
     var toolStyle = e.target;
     toolStyle.className += ' active';
 
     if(toolStyle.id == 'dash'){
         ctx.setLineDash([2*radius, 6*radius]);
+        borderStyle = 'dashed';
     } else {
         ctx.setLineDash([]);
+        borderStyle = 'solid';
     }
+    toolStyle.style.borderStyle = borderStyle;
+    document.getElementsByClassName('tool active')[0].style.borderStyle = borderStyle; 
 }
 
 document.getElementById('solid').addEventListener('click', setToolStyle);
