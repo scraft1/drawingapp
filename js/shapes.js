@@ -85,10 +85,10 @@ var circle = document.getElementById('circle');
 circle.addEventListener('click', activateCirc);
 
 
-// GRAPH 
+// +GRAPH 
 var minX = canvas.width;
 
-function drawGraph(e){
+function drawtGraph(e){
     if(!drawing)return;
     ctx.putImageData(tmpImage,0,0);
     
@@ -107,10 +107,37 @@ function drawGraph(e){
     ctx.stroke(); 
 }
 
-function activateGraph(e){
+function activatetGraph(e){
     shapeTool(e);
-    canvas.addEventListener('mousemove', drawGraph);
+    canvas.addEventListener('mousemove', drawtGraph);
 }
 
-var graph = document.getElementById('graph');
-graph.addEventListener('click', activateGraph);
+var tgraph = document.getElementById('tgraph');
+tgraph.addEventListener('click', activatetGraph);
+
+
+// LGRAPH 
+function drawLGraph(e){
+    if(!drawing)return;
+    ctx.putImageData(tmpImage,0,0);
+    
+    var x = e.offsetX, y = e.offsetY;
+
+    ctx.beginPath();
+    ctx.moveTo(startPoint.x,startPoint.y);
+    ctx.lineTo(startPoint.x,y);
+    ctx.lineTo(x,y);
+    ctx.stroke(); 
+}
+
+function activateLGraph(e){
+    shapeTool(e);
+    canvas.addEventListener('mousemove', drawLGraph);
+}
+
+var lgraph = document.getElementById('lgraph');
+lgraph.addEventListener('click', activateLGraph);
+
+
+
+

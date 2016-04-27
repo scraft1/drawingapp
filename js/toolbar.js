@@ -85,7 +85,8 @@ function removeEventListeners(){
     canvas.removeEventListener('mousemove', drawCirc);
 
     // graph
-    canvas.removeEventListener('mousemove', drawGraph);
+    canvas.removeEventListener('mousemove', drawtGraph);
+    canvas.removeEventListener('mousemove', drawLGraph);
     
     // text 
     canvas.removeEventListener('mousedown', previewText);
