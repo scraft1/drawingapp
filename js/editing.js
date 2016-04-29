@@ -53,7 +53,7 @@ function withinRect(e,rect){
 }
 
 function beginSelect(e){
-    if(selectRect && withinRect(e,selectRect)){
+    if(withinRect(e,selectRect)){
         movingSelection = true; 
         xDiff = e.offsetX - selectRect.x;
         yDiff = e.offsetY - selectRect.y; 
@@ -89,7 +89,7 @@ function moveSelect(e){
         scratchCtx.putImageData(scratchImg,0,0);
         scratchCtx.strokeRect(e.offsetX-xDiff,e.offsetY-yDiff,selectRect.w,selectRect.h);
         ctx.drawImage(scratchCanvas,0,0);
-    } else if(selectRect && withinRect(e,selectRect)){
+    } else if(withinRect(e,selectRect)){
         canvas.style.cursor = 'move';
     } else {
         canvas.style.cursor = 'default';

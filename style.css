@@ -15,7 +15,7 @@
     background-color: #2f2f2f;
 }
 
-#radval, .radcontrol, .tool, .tool-style, #imgscale {
+#radval, .radcontrol, .tool, .tool-style, #imgscale, #font-size {
     background-color: #4f4f4f;
     height:30px;
     display: inline-block;
@@ -37,7 +37,7 @@
     padding: 5px;
 }
 
-#radval, #imgscale {
+#radval, #imgscale, #font-size {
     color:white;
     font-size:14px;
     width: 40px;
@@ -65,12 +65,6 @@
     position:fixed;
     top:5px;
     margin-left:5px;
-}
-
-#text-toolbar {
-    position: fixed;
-    top: 60px;
-    right: 10px;
 }
 
 #text-toolbar * {

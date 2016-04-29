@@ -2,25 +2,35 @@
 // main.js: ctx, canvas  
 
 function keyBoardHandler(e){
+  if(typing){
+    if(e.keyCode == 9){ // tab
+      e.preventDefault();
+      text.value += '    ';
+    }
+    else if(e.metaKey && e.keyCode == 83){ // command s 
+        e.preventDefault();
+        drawText();
+    } 
+    return; 
+  }
+  else if(Object.keys(selectRect).length){
+    if(e.metaKey && e.keyCode == 67){ // c
+      selectCopy = true; 
+    }
+    else if(e.keyCode == 8){ // backspace  
+      e.preventDefault(); // needs to work for textarea 
+      ctx.putImageData(tmpImage,0,0);
+      ctx.clearRect(selectRect.x,selectRect.y,selectRect.w,selectRect.h); 
+      selectStart = selectRect = {};
+    }
+  }
+
   if(e.metaKey && e.shiftKey && e.keyCode == 90){ // z 
     redoStroke();
   }
   else if(e.metaKey && e.keyCode == 90){
     undoStroke();
     selectStart = selectRect = {};
-  }
-  else if(e.metaKey && e.keyCode == 67){ // c
-    if(Object.keys(selectRect).length){
-      selectCopy = true; 
-    }
-  }
-  else if(e.keyCode == 8){ // backspace  
-    if(Object.keys(selectRect).length){
-      e.preventDefault(); // needs to work for textarea 
-      ctx.putImageData(tmpImage,0,0);
-      ctx.clearRect(selectRect.x,selectRect.y,selectRect.w,selectRect.h); 
-      selectStart = selectRect = {};
-    }
   }
 }
 

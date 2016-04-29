@@ -57,12 +57,13 @@ function setTool(tool){
     if(active){
         active.className = 'tool';
         active.style.borderStyle = ''; 
+        if(typing) drawText(); 
     }
     tool.className += ' active';
     tool.style.borderStyle = borderStyle; 
 
+    ctx.putImageData(canvasImages[imageVersion],0,0); // in case selectRect is visible 
     removeEventListeners();
-    textToolbar.style.display = 'none'; 
     canvas.style.cursor = 'crosshair'; 
 }
 
@@ -85,14 +86,11 @@ function removeEventListeners(){
     // circle   
     canvas.removeEventListener('mousemove', drawCirc);
 
-    // graph
-    canvas.removeEventListener('mousemove', drawtGraph);
-    canvas.removeEventListener('mousemove', drawLGraph);
+    // graphs
+    canvas.removeEventListener('mousemove', drawGraph);
     
     // text 
-    canvas.removeEventListener('mousedown', previewText);
-    canvas.removeEventListener('mousemove', moveText);
-    canvas.removeEventListener('mouseup', pasteText);
+    canvas.removeEventListener('click', createText);
     
     // erasor 
     canvas.removeEventListener('mousedown', beginErase);
@@ -103,6 +101,11 @@ function removeEventListeners(){
     canvas.removeEventListener('mousedown', beginSelect);
     canvas.removeEventListener('mousemove', moveSelect);
     canvas.removeEventListener('mouseup', endSelect);   
+}
+
+function getCurrentTool(){
+    var active = document.getElementsByClassName('tool active')[0];
+    return active.id; 
 }
 
 // TOOL STYLES

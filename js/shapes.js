@@ -85,58 +85,43 @@ var circle = document.getElementById('circle');
 circle.addEventListener('click', activateCirc);
 
 
-// +GRAPH 
+// GRAPHS
 var minX = canvas.width;
 
-function drawtGraph(e){
+function drawGraph(e){
     if(!drawing)return;
     ctx.putImageData(tmpImage,0,0);
     
     var x = e.offsetX, y = e.offsetY;
-    if (x < minX){
-        minX = x;
-    }
-
     ctx.beginPath();
     ctx.moveTo(startPoint.x,startPoint.y);
     ctx.lineTo(startPoint.x,y);
-    var xaxis = (y-startPoint.y)/2 + startPoint.y;
-    ctx.moveTo(minX,xaxis);
-    if(x<startPoint.x){x=startPoint.x;}
-    ctx.lineTo(x,xaxis);
+    
+    if(graphType == 'tgraph'){
+        var xaxis = (y-startPoint.y)/2 + startPoint.y;
+        if (x < minX) minX = x;
+        ctx.moveTo(minX,xaxis);
+        if(x<startPoint.x){x=startPoint.x;}
+        ctx.lineTo(x,xaxis);
+    } else { // Lgraph 
+        var side = y - startPoint.y; // Math.abs() for positive x axis 
+        // ctx.lineTo(x,y); // custom L sizes 
+        ctx.lineTo(startPoint.x+side,y); // match width and height
+    }
     ctx.stroke(); 
 }
 
-function activatetGraph(e){
+function activateGraph(e){
+    graphType = e.target.id; 
     shapeTool(e);
-    canvas.addEventListener('mousemove', drawtGraph);
+    canvas.addEventListener('mousemove', drawGraph);
 }
 
 var tgraph = document.getElementById('tgraph');
-tgraph.addEventListener('click', activatetGraph);
-
-
-// LGRAPH 
-function drawLGraph(e){
-    if(!drawing)return;
-    ctx.putImageData(tmpImage,0,0);
-    
-    var x = e.offsetX, y = e.offsetY;
-
-    ctx.beginPath();
-    ctx.moveTo(startPoint.x,startPoint.y);
-    ctx.lineTo(startPoint.x,y);
-    ctx.lineTo(x,y);
-    ctx.stroke(); 
-}
-
-function activateLGraph(e){
-    shapeTool(e);
-    canvas.addEventListener('mousemove', drawLGraph);
-}
+tgraph.addEventListener('click', activateGraph);
 
 var lgraph = document.getElementById('lgraph');
-lgraph.addEventListener('click', activateLGraph);
+lgraph.addEventListener('click', activateGraph);
 
 
 
