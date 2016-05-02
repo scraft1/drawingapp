@@ -2,7 +2,8 @@
 // main.js: ctx, canvas  
 // toolbar.js: setTool, textToolbar 
 
-var fontSize = 40, // default
+var fontSize = 32, // default
+    lineHeight = 1.25,
     typing = false,
     textCoord = {},
     text;
@@ -14,7 +15,7 @@ function setFontSize(size){
 
 function fontSizePosition(){
     text.style.fontSize = fontSize+'px';
-    text.style.top = (textCoord.y-fontSize/2)+'px'; 
+    text.style.top = (textCoord.y-fontSize*lineHeight/2)+'px'; 
     ctx.font=fontSize+'px sans-serif'; 
 }
 
@@ -24,9 +25,9 @@ function createText(e){
     text = document.createElement('textarea');  
     text.style = 'position:absolute;border:none;outline:none;resize:none';
     text.style.backgroundColor = 'transparent';
-    text.style.width = width-e.offsetX+'px';
-    text.style.height = height-e.offsetY+'px';
-    text.style.lineHeight = 1; // needed ? 
+    text.style.width = width-textCoord.x+'px';
+    text.style.height = height-textCoord.y+'px';
+    text.style.lineHeight = lineHeight;
     text.style.color = activeColor; 
     text.style.left = (textCoord.x)+'px';
     fontSizePosition(); 
@@ -36,16 +37,14 @@ function createText(e){
 }
 
 function drawText(){
-    var adj = fontSize/10; 
-    if(fontSize < 34)adj = Math.floor(adj);
-    else adj = Math.ceil(adj); 
+    var adj = {16:3,18:3,20:4,22:5,24:5,26:5,28:6,30:7,32:7,34:8,36:8,38:10,40:9,42:10,44:10,46:12,48:12,50:11};
     var x = textCoord.x+2; 
-    var y = textCoord.y+fontSize/2-adj;
+    var y = textCoord.y+fontSize*lineHeight/2 - adj[fontSize];
 
     var lines = text.value.split('\n'); 
     for(var i = 0; i < lines.length; i++){
         ctx.fillText(lines[i],x,y);
-        y += fontSize; 
+        y += Math.floor(fontSize*lineHeight); 
     }
     text.remove(); 
     setImage(); 
