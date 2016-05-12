@@ -2,7 +2,7 @@
 // main.js: ctx, canvas  
 // toolbar.js: setTool, textToolbar 
 
-var fontSize = 32, // default
+var fontSize = 26, // default
     lineHeight = 1.25,
     typing = false,
     textCoord = {},
@@ -47,7 +47,7 @@ function drawText(){
         y += Math.floor(fontSize*lineHeight); 
     }
     text.remove(); 
-    setImage(); 
+    pages[currentPage].setImage(); 
     typing = false; 
 }
 

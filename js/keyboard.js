@@ -13,40 +13,34 @@ function keyBoardHandler(e){
     } 
     return; 
   }
-  else if(Object.keys(selectRect).length){
-    if(e.metaKey && e.keyCode == 67){ // c
+  else if(Object.keys(selectRect).length){ // selecting 
+    if(e.metaKey && e.keyCode == 67){ // command c
       selectCopy = true; 
     }
-    else if(e.keyCode == 8){ // backspace  
+    else if(e.keyCode == 8){ // delete 
       e.preventDefault(); // needs to work for textarea 
       ctx.putImageData(tmpImage,0,0);
       ctx.clearRect(selectRect.x,selectRect.y,selectRect.w,selectRect.h); 
       selectStart = selectRect = {};
+      pages[currentPage].setImage(); 
     }
   }
 
-  if(e.metaKey && e.shiftKey && e.keyCode == 90){ // z 
-    redoStroke();
+  if(e.metaKey && e.shiftKey && e.keyCode == 90){ // comand shift z 
+    pages[currentPage].redoStroke();
   }
-  else if(e.metaKey && e.keyCode == 90){
-    undoStroke();
+  else if(e.metaKey && e.keyCode == 90){ // command z 
+    pages[currentPage].undoStroke();
     selectStart = selectRect = {};
   }
+  else if(e.metaKey && e.keyCode == 37){ // command left arrow
+    e.preventDefault();
+    backwardPage();
+  }
+  else if(e.metaKey && e.keyCode == 39){ // command right arrow
+    forwardPage();
+  }
 }
-
-// UNDO and REDO 
-function undoStroke(){
-  if(imageVersion == 0)return;
-  imageVersion--;
-  ctx.putImageData(canvasImages[imageVersion], 0, 0); 
-}
-
-function redoStroke(){
-  if(imageVersion == canvasImages.length-1)return;
-  imageVersion++;
-  ctx.putImageData(canvasImages[imageVersion], 0, 0);
-}
-
 
 // PASTE IMAGE 
 var scale = 1; 
@@ -71,7 +65,7 @@ function pasteClipboard(e){
     else if(height>canvas.height){height=canvas.height;}
 
     ctx.drawImage(img,100,100,width,height);
-    setImage(); 
+    pages[currentPage].setImage(); 
   }
 }
 

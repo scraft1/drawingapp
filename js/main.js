@@ -20,18 +20,6 @@ window.onresize = function(){
   ctx.putImageData(image,0,0);
 }
 
-var canvasImages = [ctx.getImageData(0,0,canvas.width,canvas.height)]; 
-var imageVersion = 0;
-
-function setImage(){
-  if(imageVersion < canvasImages.length-1){
-    canvasImages = canvasImages.slice(0,imageVersion+1);
-  }
-  var currentImage = ctx.getImageData(0,0,canvas.width,canvas.height);
-  canvasImages.push(currentImage);
-  imageVersion = canvasImages.length - 1; 
-}
-
 function rectCoord(x1,y1,x2,y2){
     var x, y;
     if(x1 < x2){x = x1;}

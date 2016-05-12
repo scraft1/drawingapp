@@ -11,46 +11,45 @@
 
 }
 
-#toolbar, #colors, #text-toolbar * {
+#toolbar, #colors {
     background-color: #2f2f2f;
-}
-
-#radval, .radcontrol, .tool, .tool-style, #imgscale, #font-size {
-    background-color: #4f4f4f;
-    height:30px;
-    display: inline-block;
-    text-align: center;
 }
 
 #toolbar {
     width: 100%;
-    height: 50px;
+    height: 45px;
     padding: 10px;
     position: fixed;
     top: 0;
-    color: white;
     cursor:pointer;
+    font-size: 12px;
+    display:inline-block;
 }
 
-.radcontrol, #radval {
-    width: 30px;
-    padding: 5px;
-}
-
-#radval, #imgscale, #font-size {
+#toolbar * {
+    display: inline-block; 
     color:white;
-    font-size:14px;
-    width: 40px;
+}
+
+#imgscale, #radval, .radcontrol, .tool-style, .tool, #font-size {
+    background-color: #4f4f4f;
+    height:25px;
+    line-height: 25px;
+}
+
+#radval, #imgscale {
+    width:30px;
+    text-align: center;
+}
+#radval, #imgscale, #font-size {
     border:none;
 }
-
-#rad {
-    display: inline-block;
-    margin-right: 10px; 
+.radcontrol {
+    padding: 0px 10px 0px 10px;
 }
 
 .tool, .tool-style {
-    padding: 5px 10px 5px 10px;
+    padding: 0px 10px 0px 10px;
     margin-left:7px;
 }
 
@@ -60,32 +59,21 @@
 
 .vertical-divider {
     border-left:1px solid #9f9f9f; 
-    height:40px;
+    height:35px;
     display: inline-block;
     position:fixed;
     top:5px;
-    margin-left:5px;
+    margin-left:4px;
 }
 
-#text-toolbar * {
-    color:white;
+#pages {
     float:right;
-    font-size: 16px;
-    margin-left: 10px;
-}
-
-#select, #erase, #scale {
-    float:right;
-}
-
-#scale {
-    margin-left: 10px; 
 }
 
 #colors {
     float:left;
     position:fixed;
-    top:50px;
+    top:45px;
     padding:7px 7px 0px 7px;
 }
 
@@ -106,6 +94,5 @@
 
 #canvas1 {
     background-color: black;
-    cursor:crosshair;
     overflow:auto;
 }

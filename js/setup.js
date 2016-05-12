@@ -4,6 +4,10 @@
 // toolbar.js: removeEventListeners 
 // drawing.js: activateDrawing, drawingTool 
 
+var page = new Page();
+pages.push(page); 
+updateCurrentPage();
+
 activateDrawing({target:drawingTool}); // set drawing tool as default 
 //activateText({target:textTool}); 
 

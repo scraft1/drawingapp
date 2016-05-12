@@ -8,9 +8,8 @@ var isDrawing = false,
     control2 = {},
     lastPoint = {},
     strokeEnd = {},
-    readyToDraw = false,
-    gradrad; 
-
+    readyToDraw = false;
+    
 ctx.lineCap = ctx.lineJoin = "round";
 // ctx.imageSmoothingEnabled = true;
 
@@ -69,7 +68,7 @@ function endDraw(e) {
   ctx.stroke(); 
   ctx.beginPath(); 
   isDrawing = readyToDraw = false;
-  setImage();
+  pages[currentPage].setImage();
 }
 
 function activateDrawing(e){

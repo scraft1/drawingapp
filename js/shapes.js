@@ -17,7 +17,7 @@ function beginShape(e){
 
 function endShape(){
     drawing = false;
-    setImage();
+    pages[currentPage].setImage();
 }
 
 function shapeTool(e){

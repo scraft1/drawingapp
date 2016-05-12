@@ -18,7 +18,7 @@ function erase(e){
 
 function endErase(){
     erasing = false;
-    setImage();
+    pages[currentPage].setImage();
 }
 
 function activateErasor(e){
@@ -105,7 +105,7 @@ function endSelect(e){
 
         ctx.putImageData(tmpImage,0,0); 
         ctx.putImageData(selectImg,e.offsetX-xDiff,e.offsetY-yDiff);
-        setImage();
+        pages[currentPage].setImage();
         selectStart = selectRect = {}; 
     }
     selectCopy = false; 

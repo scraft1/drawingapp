@@ -11,14 +11,21 @@
 <body style="margin:0">
 
   <div id="toolbar">
+    <div id="scale">
+      Paste:&nbsp;
+      <input type="text" id="imgscale" onchange="setScale(this.value)">
+    </div> 
     <div id="rad">
-      Width: &emsp;
+      &emsp;Width:&emsp;
       <input type="text" id="radval" onchange="setRadius(this.value)">&emsp;
       <div id="decrad" class="radcontrol">-</div>
       <div id="incrad" class="radcontrol">+</div>
     </div>
+
+    <div class="vertical-divider"></div>&emsp;
     <div id="solid" class="tool-style">Solid</div>
     <div id="dash" class="tool-style">Dash</div>
+    
     <div class="vertical-divider"></div>&emsp;
     <div id="draw" class="tool">Draw</div>
     <div id="line" class="tool">Line</div>
@@ -28,13 +35,17 @@
     <div id="lgraph" class="tool">LGraph</div>
     <div id="text" class="tool">Text</div>
     <select id="font-size" onchange="setFontSize(this.value)"><select>
-
-    <div id="scale">
-      Paste:&nbsp;
-      <input type="text" id="imgscale" onchange="setScale(this.value)">
-    </div> 
-    <div id="erase" class="tool">Erase</div>
     <div id="select" class="tool">Select</div>
+    <div id="erase" class="tool">Erase</div>
+
+
+    <div id="pages">
+      Page &nbsp;
+      <span id="current-page">1</span>&nbsp;/&nbsp;<span id="total-pages">1</span>
+      <div id="add-page" class="tool">Add</div>
+      <div id="remove-page" class="tool">Remove</div>
+    </div>
+    
   </div>
 
   <div id="colors"></div>
@@ -43,6 +54,7 @@
   </canvas> 
 
   <script src='js/main.js'></script>
+  <script src='js/pages.js'></script>
   <script src='js/toolbar.js'></script>
   <script src='js/colors.js'></script>
   <script src='js/drawing.js'></script>
