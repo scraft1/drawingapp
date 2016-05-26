@@ -47,7 +47,7 @@ function drawText(){
         y += Math.floor(fontSize*lineHeight); 
     }
     text.remove(); 
-    pages[currentPage].setImage(); 
+    if(lines != 0)pages[currentPage].setImage(); 
     typing = false; 
 }
 

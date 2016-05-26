@@ -31,25 +31,13 @@ function rectCoord(x1,y1,x2,y2){
     return {x:x, y:y, w:w, h:h}
 }
 
-// FIXES:
-// changing tool with select rect 
-
 // TO DO: 
 // select zoom?  
 // grid background 
 // show angle and magnitude of lines, change units 
 // show size of erasor (thin rectangle), color dot
-// curve (use highest point as control) 
-// cosine, sine waves 
-// multiline text, fill, lasso?
-// save images and reupload images 
+// graph functions 
+// lasso select 
+// save and upload images? 
 // arrange colors 
-// hide layers 
-
-// Tool bar 
-// Width, scale 
-// Shape: line, rect, circ, graph 
-// Style: solid, dash, fill? 
-// erase: tool, region
-// text 
-// colors
+// copy page to new page, (always copy then clear?)

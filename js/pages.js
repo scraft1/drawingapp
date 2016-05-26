@@ -6,8 +6,12 @@ var pages = [];
 var currentPage = 0;  
 
 class Page {
-    constructor(){ 
-        this.canvasImages = [blankCanvas]; 
+    constructor(img){ 
+        if(img !== undefined){
+          this.canvasImages = [img]; 
+        } else {
+          this.canvasImages = [blankCanvas]; 
+        }
         this.imageVersion = 0;   
     }
 
@@ -37,14 +41,24 @@ class Page {
     }
 }
 
-function addPage(){
+function newPage(){
+    if(typing) drawText(); 
     var page = new Page();
     pages.splice(currentPage+1, 0, page); 
     forwardPage(); 
     document.getElementById('total-pages').innerHTML = pages.length;
 }
 
+function copyPage(){
+    if(typing) drawText(); 
+    var page = new Page(pages[currentPage].currentImage());
+    pages.splice(currentPage+1, 0, page); 
+    forwardPage(); 
+    document.getElementById('total-pages').innerHTML = pages.length;
+}
+
 function removePage(){
+    if(typing) drawText(); 
     pages.splice(currentPage,1);
     if(currentPage > pages.length - 1) currentPage = pages.length - 1;
     updateCurrentPage(); 
@@ -69,5 +83,7 @@ function backwardPage(){
     updateCurrentPage();
 }
 
-document.getElementById('add-page').addEventListener('click', addPage);
+document.getElementById('new-page').addEventListener('click', newPage);
+document.getElementById('copy-page').addEventListener('click', copyPage);
 document.getElementById('remove-page').addEventListener('click', removePage);
+
