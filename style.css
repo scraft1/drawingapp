@@ -78,6 +78,13 @@
     padding:7px 7px 0px 7px;
 }
 
+#angle {
+    position:fixed;
+    top:50px;
+    right:5px;
+    color:white;
+}
+
 .swatch {
     width:30px;
     height:30px;

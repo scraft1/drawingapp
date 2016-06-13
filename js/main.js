@@ -31,6 +31,10 @@ function rectCoord(x1,y1,x2,y2){
     return {x:x, y:y, w:w, h:h}
 }
 
+function getAngle(x1,y1,x2,y2){
+   return Math.round(Math.atan2((y1-y2),(x2-x1))*180/Math.PI);
+}
+
 // TO DO: 
 // select zoom?  
 // grid background 

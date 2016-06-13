@@ -18,6 +18,7 @@ function beginShape(e){
 function endShape(){
     drawing = false;
     pages[currentPage].setImage();
+    lineAngle.innerHTML = ''; 
 }
 
 function shapeTool(e){
@@ -35,6 +36,8 @@ function drawLine(e){
     ctx.moveTo(startPoint.x, startPoint.y);
     ctx.lineTo(e.offsetX,e.offsetY);
     ctx.stroke();
+
+    lineAngle.innerHTML = getAngle(startPoint.x,startPoint.y,e.offsetX,e.offsetY)+'&deg;';
 }
 
 function activateLine(e){
@@ -123,6 +126,6 @@ tgraph.addEventListener('click', activateGraph);
 var lgraph = document.getElementById('lgraph');
 lgraph.addEventListener('click', activateGraph);
 
-
+var lineAngle = document.getElementById('angle');
 
 
