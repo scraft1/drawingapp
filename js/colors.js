@@ -2,7 +2,8 @@
 // main.js: ctx
 
 var activeColor,
-    transparentColor; 
+    transparentColor,
+    typing = false;
 
 var colors = [
     'rgb(255,255,255)', // white 
@@ -30,8 +31,11 @@ function setColor(color){
     activeColor = color;
     transparentColor = rgbToRgba(color,0);
     var active = document.getElementsByClassName('swatch active')[0];
-    if(active){
-        active.className = 'swatch';
+    if(active) active.className = 'swatch';
+    if(typing){
+        var text = document.getElementById('text-id');
+        text.style.color = color;
+        text.focus(); 
     }
 }
 

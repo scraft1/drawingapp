@@ -69,18 +69,37 @@ function updateCurrentPage(){
     var cur = document.getElementById('current-page');
     cur.innerHTML = currentPage + 1;
     ctx.putImageData(pages[currentPage].currentImage(), 0, 0); 
+
+    if(movingSelection){
+      tmpImage = ctx.getImageData(0,0,canvas.width,canvas.height); 
+      // draw without moving? use last mouse position?
+    }
 }
 
 function forwardPage(){
     if(currentPage == pages.length-1)return;
+    prePageTurn();
     currentPage++;
     updateCurrentPage();
 }
 
 function backwardPage(){
     if(currentPage == 0)return;
+    prePageTurn();
     currentPage--;
     updateCurrentPage();
+}
+
+function prePageTurn(){
+  if(movingSelection){
+    ctx.putImageData(tmpImage,0,0);
+    if(!selectCopy)pages[currentPage].setImage(); 
+    // only setImage on initial page? (if scrolling through multiple pages)
+  }
+  else if(selectRect != {}){
+    selectStart = selectRect = {};
+    canvas.style.cursor = 'default'; 
+  }
 }
 
 document.getElementById('new-page').addEventListener('click', newPage);

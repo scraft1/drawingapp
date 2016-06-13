@@ -1,10 +1,10 @@
 // DEPENDENCIES
 // main.js: ctx, canvas  
 // toolbar.js: setTool, textToolbar 
+// colors.js: typing
 
 var fontSize = 26, // default
     lineHeight = 1.25,
-    typing = false,
     textCoord = {},
     text;
 
@@ -23,13 +23,14 @@ function createText(e){
     if(typing)drawText();
     textCoord = {x:e.offsetX,y:e.offsetY}; 
     text = document.createElement('textarea');  
-    text.style = 'position:absolute;border:none;outline:none;resize:none';
+    text.style = 'position:absolute;border:none;outline:none;resize:none;z-index:2';
     text.style.backgroundColor = 'transparent';
     text.style.width = width-textCoord.x+'px';
     text.style.height = height-textCoord.y+'px';
     text.style.lineHeight = lineHeight;
     text.style.color = activeColor; 
     text.style.left = (textCoord.x)+'px';
+    text.id = 'text-id';
     fontSizePosition(); 
     document.body.appendChild(text); 
     text.focus(); 
