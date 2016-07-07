@@ -4,12 +4,12 @@
 function keyBoardHandler(e){
   if(typing){
     if(e.keyCode == 9){ // tab
-      e.preventDefault();
+      e.preventDefault(); 
       text.value += '    ';
     }
     else if(e.metaKey && e.keyCode == 83){ // command s 
-        e.preventDefault();
-        drawText();
+      e.preventDefault(); 
+      drawText();
     } 
     return; 
   }
@@ -18,7 +18,7 @@ function keyBoardHandler(e){
       selectCopy = true; 
     }
     else if(e.keyCode == 8){ // delete 
-      e.preventDefault(); // needs to work for textarea 
+      e.preventDefault(); 
       ctx.putImageData(tmpImage,0,0);
       ctx.clearRect(selectRect.x,selectRect.y,selectRect.w,selectRect.h); 
       selectStart = selectRect = {};
@@ -39,6 +39,18 @@ function keyBoardHandler(e){
   }
   else if(e.metaKey && e.keyCode == 39){ // command right arrow
     forwardPage();
+  }
+  else if(e.metaKey && e.keyCode == 68){ // command d
+    e.preventDefault(); 
+    activateDrawing({target:drawingTool});
+  }
+  else if(e.metaKey && e.keyCode == 82){ // command r
+    e.preventDefault();
+    activateRect({target:rectangle});
+  }
+  else if(e.metaKey && e.keyCode == 83){ // command s
+    e.preventDefault(); 
+    activateSelect({target:select});
   }
 }
 

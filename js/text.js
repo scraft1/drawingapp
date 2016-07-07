@@ -1,7 +1,7 @@
 // DEPENDENCIES
 // main.js: ctx, canvas  
 // toolbar.js: setTool, textToolbar 
-// colors.js: typing
+// colors.js: typing, textColor 
 
 var fontSize = 26, // default
     lineHeight = 1.25,
@@ -28,7 +28,7 @@ function createText(e){
     text.style.width = width-textCoord.x+'px';
     text.style.height = height-textCoord.y+'px';
     text.style.lineHeight = lineHeight;
-    text.style.color = activeColor; 
+    text.style.color = textColor; 
     text.style.left = (textCoord.x)+'px';
     text.id = 'text-id';
     fontSizePosition(); 

@@ -1,7 +1,6 @@
 // DEPENDENCIES
 // main.js: ctx, canvas  
 // toolbar.js: radius 
-// colors.js: activeColor 
 
 var isDrawing = false, 
     control1 = {},
@@ -39,7 +38,6 @@ function beginDraw(e) {
 function drawDot(e){
   ctx.beginPath();
   ctx.arc(e.offsetX, e.offsetY, radius, 0, Math.PI*2); 
-  ctx.fillStyle = activeColor;
   ctx.fill();
 }
 

@@ -13,3 +13,5 @@ activateDrawing({target:drawingTool}); // set drawing tool as default
 
 var defaultStyle = document.getElementById('solid'); 
 setToolStyle({target: defaultStyle}); 
+
+setSwatch({target:document.getElementsByClassName('swatch')[0]}); // first swatch default 

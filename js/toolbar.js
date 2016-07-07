@@ -62,7 +62,10 @@ function setTool(tool){
     tool.className += ' active';
     tool.style.borderStyle = borderStyle; 
 
-    ctx.putImageData(pages[currentPage].currentImage(),0,0); // in case selectRect is visible 
+    if(Object.keys(selectRect).length){
+        selectRect = {}; 
+        ctx.putImageData(pages[currentPage].currentImage(),0,0); // should be same as tmpImage 
+    }
     removeEventListeners();
     canvas.style.cursor = 'crosshair'; 
 }
